@@ -120,6 +120,23 @@
       });
       return promise;
     };
+    
+    TastyResourceFactory.prototype.remove = function(id) {
+      var promise, url,
+        _this = this;
+      url = this._get_detail_url(id);
+      this._resolved = false;
+      promise = this.$http({
+        method: "DELETE",
+        url: url,
+        data: this._get_data()
+      });
+      promise.then(function() {
+        return _this._resolved = true;
+      });
+      return promise;
+    };
+    
 
     TastyResourceFactory.prototype.resolved = function() {
       return this._resolved;
